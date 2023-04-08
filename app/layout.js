@@ -1,5 +1,8 @@
+import { Suspense } from "react";
 import Navbar from "./Navbar";
 import "./globals.css";
+import Loading from "./loading";
+import Footer from "./Footer";
 
 export const metadata = {
   title: "Art Gallery",
@@ -9,9 +12,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-screen flex flex-col bg-base-200">
         <Navbar />
-        <main className="p-8">{children}</main>
+        <main className="p-8 flex-1 h-full flex flex-col">
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </main>
+        <Footer />
       </body>
     </html>
   );
